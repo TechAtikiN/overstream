@@ -1,22 +1,26 @@
 'use client'
 
+import { useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { SearchIcon } from "lucide-react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { SearchIcon, X } from "lucide-react";
 
 export default function SearchInput() {
   const [search, setSearch] = useState('')
-  const router = useRouter()
+  const { replace } = useRouter();
   const pathname = usePathname()
   const searchParams = useSearchParams()
 
+  const onClear = () => {
+    setSearch("")
+  }
+
   const handleSearch = async (search: string) => {
-    if (!search) return
-    console.log(`${window.location.href}?search=${search}`)
-    router.replace(`${window.location.href}?search=${search}`)
-    // }
+    const params = new URLSearchParams(searchParams);
+    search ? params.set('term', search) : params.delete('term');
+    const url = `${pathname}search?${params.toString()}`;
+    replace(url);
   }
 
   return (
@@ -26,8 +30,14 @@ export default function SearchInput() {
         onChange={(e) => setSearch(e.target.value)}
         type="text"
         placeholder="Search..."
+        defaultValue={searchParams.get('term')?.toString()}
         className="rounded-r-none focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0"
       />
+      {search && (
+        <X
+          className="absolute top-2.5 right-14 h-5 w-5 text-muted-foreground cursor-pointer hover:opacity-75 transition"
+          onClick={onClear}
+        />)}
       <Button
         onClick={() => handleSearch(search)}
         type="submit"
