@@ -29,7 +29,7 @@ export default function SearchInput() {
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         type="text"
-        placeholder="Search..."
+        placeholder="Search"
         defaultValue={searchParams.get('term')?.toString()}
         className="rounded-r-none focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0"
       />
