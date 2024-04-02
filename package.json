@@ -12,6 +12,7 @@
     "@clerk/nextjs": "^4.29.9",
     "@clerk/themes": "^1.7.10",
     "@prisma/client": "^5.11.0",
+    "@radix-ui/react-avatar": "^1.0.4",
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-tooltip": "^1.0.7",
     "class-variance-authority": "^0.7.0",
@@ -24,6 +25,7 @@
     "svix": "^1.21.0",
     "tailwind-merge": "^2.2.2",
     "tailwindcss-animate": "^1.0.7",
+    "usehooks-ts": "^3.0.2",
     "zustand": "^4.5.2"
   },
   "devDependencies": {

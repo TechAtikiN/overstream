@@ -10,8 +10,8 @@ export default function Logo() {
             className="rounded-full"
             src="/logo.png"
             alt="Logo"
-            width={30}
-            height={30}
+            width={28}
+            height={28}
           />
         </div>
         <p className='font-semibold text-lg hidden lg:flex'>overstream</p>
