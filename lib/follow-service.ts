@@ -1,6 +1,27 @@
 import { getUser } from "@/lib/auth-service"
 import { db } from "@/lib/db"
 
+// Get the users that the current user is following
+export const getFollowedUsers = async () => { 
+  try {
+    const user = await getUser()
+
+    const followedUsers = db.follow.findMany({
+      where: {
+        followerId: user.id
+      },
+      include: {
+        following: true
+      }
+    })
+
+    return followedUsers
+  } catch (error) {
+    return []
+  }
+}
+
+// Check if the current user is following a specific user
 export const isFollowingUser = async (id: string) => {
   try {
     const self = await getUser()
@@ -34,6 +55,7 @@ export const isFollowingUser = async (id: string) => {
   }
 }
 
+// Follow a user
 export const followUser = async (id: string) => {
   const self = await getUser()
 
@@ -76,6 +98,7 @@ export const followUser = async (id: string) => {
   return follow
 }
 
+// Unfollow a user
 export const unfollowUser = async (id: string) => {
   const user = await getUser()
 
