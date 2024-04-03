@@ -1,7 +1,7 @@
 "use client"
 
 import { useTransition } from "react";
-import { onFollow } from "@/actions/follow";
+import { onFollow, onUnFollow } from "@/actions/follow";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 
@@ -13,20 +13,33 @@ interface ActionsProps {
 export default function Actions({ isFollowing, userId }: ActionsProps) {
   const [isPending, startTransition] = useTransition()
 
-  const onClick = () => {
+  const handleFollow = () => {
     startTransition(() => {
       onFollow(userId)
         .then((data) => toast.success(`You are now following ${data.following.username}`))
         .catch(() => toast.error("Failed to follow the user"))
     })
   }
+
+  const handleUnfollow = () => {
+    startTransition(() => {
+      onUnFollow(userId)
+        .then((data) => toast.success(`You are no longer following ${data.following.username}`))
+        .catch(() => toast.error("Failed to unfollow the user"))
+    })
+  }
+
+  const onClick = () => {
+    isFollowing ? handleUnfollow() : handleFollow()
+  }
+
   return (
     <Button
-      disabled={isFollowing || isPending}
+      disabled={isPending}
       onClick={onClick}
       variant={"primary"}
     >
-      Follow
+      {isFollowing ? "Unfollow" : "Follow"}
     </Button>
   )
 }
