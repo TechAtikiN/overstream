@@ -1,5 +1,5 @@
 import { currentUser } from "@clerk/nextjs"
-import { db } from "./db"
+import { db } from "@/lib/db"
 
 export const getUser = async() => {
   const loggedInUser = await currentUser()
