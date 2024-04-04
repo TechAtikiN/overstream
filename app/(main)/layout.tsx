@@ -7,7 +7,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   return (
     <>
       <Navbar />
-      <div className="flex h-full pt-16">
+      <div className="flex h-full pt-20">
         <Suspense fallback={<SidebarSkeleton />}>
           <Sidebar />
         </Suspense>

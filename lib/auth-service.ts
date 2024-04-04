@@ -20,3 +20,27 @@ export const getUser = async() => {
 
   return user
 }
+
+export const getUserByUsername = async (username: string) => {
+  const user = await currentUser()
+
+  if(!user || !user.username) {
+    throw new Error("Unauthorized")
+  }
+
+  const userDetails = await db.user.findUnique({
+    where: {
+      username
+    }
+  })
+
+  if (!userDetails) {
+    throw new Error("User not found")
+  }
+
+  if (user.username !== userDetails.username) {
+    throw new Error("Unauthorized")
+  }
+
+  return userDetails
+}
