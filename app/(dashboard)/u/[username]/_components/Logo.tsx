@@ -16,7 +16,7 @@ export default function Logo() {
         </div>
         <div className="flex flex-col">
           <p className="font-semibold text-lg hidden lg:flex">overstream</p>
-          <p className="text-xs text-muted-foreground">
+          <p className="text-xs text-muted-foreground hidden lg:flex">
             Creator Dashboard
           </p>
         </div>
