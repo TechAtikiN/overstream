@@ -1,8 +1,9 @@
 import { Input } from "@/components/ui/input"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { useParticipants } from "@livekit/components-react"
-import { useState } from "react"
-import { useDebounceValue } from "usehooks-ts"
+import { useMemo, useState } from "react"
+import { LocalParticipant, RemoteParticipant } from "livekit-client"
+import { useDebounceValue } from "usehooks-ts";
 import CommunityItem from "./CommunityItem"
 
 interface ChatCommunityProps {
@@ -12,14 +13,28 @@ interface ChatCommunityProps {
 }
 
 export default function ChatCommunity({ viewerName, hostName, isHidden }: ChatCommunityProps) {
-  const [value, setValue] = useState("")
-  const debouncedValue = useDebounceValue(value, 500)
+  const [defaultValue, setDefaultValue] = useState('')
+  const [debouncedValue, setValue] = useDebounceValue(defaultValue, 500)
 
-  const participants = useParticipants()
+  const participants = useParticipants();
 
   const onChange = (newValue: string) => {
-    setValue(newValue)
-  }
+    setValue(newValue);
+  };
+
+  const filteredParticipants = useMemo(() => {
+    const deduped = participants.reduce((acc, participant) => {
+      const hostAsViewer = `host-${participant.identity}`;
+      if (!acc.some((p) => p.identity === hostAsViewer)) {
+        acc.push(participant);
+      }
+      return acc;
+    }, [] as (RemoteParticipant | LocalParticipant)[]);
+
+    return deduped.filter((participant) => {
+      return participant.name?.toLowerCase().includes(debouncedValue.toLowerCase())
+    });
+  }, [participants, debouncedValue]);
 
   if (isHidden) {
     return (
@@ -42,7 +57,7 @@ export default function ChatCommunity({ viewerName, hostName, isHidden }: ChatCo
         <p className="text-center text-sm text-muted-foreground hidden last:block p-2">
           No results
         </p>
-        {participants.map((participant) => (
+        {filteredParticipants.map((participant) => (
           <CommunityItem
             key={participant.identity}
             hostName={hostName}
