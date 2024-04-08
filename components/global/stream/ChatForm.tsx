@@ -56,7 +56,10 @@ export default function ChatForm({
       className="flex flex-col items-center gap-y-4 p-3"
     >
       <div className="w-full">
-        <ChatInfo />
+        <ChatInfo
+          isDelayed={isDelayed}
+          isFollowersOnly={isFollowersOnly}
+        />
         <Input
           onChange={(e) => onChange(e.target.value)}
           value={value}
