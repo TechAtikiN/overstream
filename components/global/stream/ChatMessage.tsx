@@ -20,7 +20,7 @@ export default function ChatMessage({ data }: ChatMessageProps) {
         <p className="text-sm font-semibold whitespace-nowrap">
           <span className="truncate" style={{ color: color }}>
             {data.from?.name}
-          </span>
+          </span>:
         </p>
         <p className="text-sm break-all">
           {data.message}
