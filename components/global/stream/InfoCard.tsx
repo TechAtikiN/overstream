@@ -62,6 +62,7 @@ export default function InfoCard({
                     fill
                     src={thumbnailUrl}
                     alt="Thumbnail"
+                    className="object-cover"
                   />
                 </div>
               )
