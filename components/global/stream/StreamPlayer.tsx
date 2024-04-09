@@ -10,9 +10,15 @@ import Video, { VideoSkeleton } from './Video'
 import Chat, { ChatSkeleton } from "./Chat"
 import ChatToggle from "./ChatToggle"
 import InfoCard from "./InfoCard"
+import AboutCard from "./AboutCard"
 
 interface StreamPlayerProps {
-  user: User & { stream: Stream | null }
+  user: User & {
+    stream: Stream | null,
+    _count: {
+      followedBy: number
+    }
+  }
   stream: Stream
   isFollowing: boolean
 }
@@ -62,6 +68,13 @@ export default function StreamPlayer({ user, stream, isFollowing }: StreamPlayer
             viewerIdentity={identity}
             name={stream.name}
             thumbnailUrl={stream.thumbnailUrl}
+          />
+          <AboutCard
+            hostName={user.username}
+            hostIdentity={user.id}
+            viewerIdentity={identity}
+            bio={user.bio}
+            followedByCount={user._count.followedBy}
           />
         </div>
         <div className={cn(
