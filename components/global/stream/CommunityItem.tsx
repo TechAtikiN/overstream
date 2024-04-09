@@ -47,7 +47,7 @@ export default function CommunityItem({
       <p style={{ color: color }}>
         {participantName}
       </p>
-      {isHost && isSelf && (
+      {isHost && !isSelf && (
         <Hint label="Block">
           <Button
             variant={"ghost"}
