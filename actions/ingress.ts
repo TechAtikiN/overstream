@@ -31,7 +31,6 @@ export const resetIngress = async (hostIdentity: string) => {
   for (const room of rooms) {
     await roomService.deleteRoom(room.name)
   }
-
   for (const ingress of ingresses) {
     await ingressClient.deleteIngress(ingress.ingressId)
   }
@@ -39,8 +38,8 @@ export const resetIngress = async (hostIdentity: string) => {
 
 export const createIngress = async (ingressType: IngressInput) => {
   const user = await getUser();
-  
-  await resetIngress(user.id)
+  console.log('-----Creating ingress for user-------', user)
+  await resetIngress(user.id).then(()=>console.log('reseted')).catch((e)=>console.log('error', e.message))
 
   const options: CreateIngressOptions = {
     name: user.username,
@@ -48,6 +47,8 @@ export const createIngress = async (ingressType: IngressInput) => {
     participantName: user.username,
     participantIdentity: user.id,
   }
+
+  console.log("---------options--------", options)
 
   if (ingressType === IngressInput.WHIP_INPUT) {
     options.bypassTranscoding = true
@@ -72,7 +73,9 @@ export const createIngress = async (ingressType: IngressInput) => {
     }
   }
 
-  const ingress = await ingressClient.createIngress(ingressType, options)
+  console.log('-----Creatingg ingress-------')
+  const ingress = await ingressClient.createIngress(ingressType, options).then((ingress)=>ingress).catch((e)=>console.log('error', e.message))
+  console.log('-----Created ingress-------', ingress)
 
   if (!ingress || !ingress.url || !ingress.streamKey) {
     throw new Error('Failed to create ingress')
