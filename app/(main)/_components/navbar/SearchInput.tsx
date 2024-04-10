@@ -1,52 +1,58 @@
-'use client'
+"use client";
 
 import { useState } from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { SearchIcon, X } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import qs from "query-string";
 
 export default function SearchInput() {
-  const [search, setSearch] = useState('')
-  const { replace } = useRouter();
-  const pathname = usePathname()
-  const searchParams = useSearchParams()
+  const router = useRouter();
+  const [value, setValue] = useState("");
+
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (!value) return;
+
+    const url = qs.stringifyUrl({
+      url: "/search",
+      query: { term: value },
+    }, { skipEmptyString: true });
+
+    router.push(url);
+  };
 
   const onClear = () => {
-    setSearch("")
-  }
-
-  const handleSearch = async (search: string) => {
-    const params = new URLSearchParams(searchParams);
-    search ? params.set('term', search) : params.delete('term');
-    const url = `${pathname}search?${params.toString()}`;
-    replace(url);
-  }
+    setValue("");
+  };
 
   return (
-    <div className="relative w-full lg:w-[400px] flex items-center">
+    <form
+      onSubmit={onSubmit}
+      className="relative w-full lg:w-[400px] flex items-center"
+    >
       <Input
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        type="text"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
         placeholder="Search"
-        defaultValue={searchParams.get('term')?.toString()}
         className="rounded-r-none focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0"
       />
-      {search && (
+      {value && (
         <X
           className="absolute top-2.5 right-14 h-5 w-5 text-muted-foreground cursor-pointer hover:opacity-75 transition"
           onClick={onClear}
-        />)}
+        />
+      )}
       <Button
-        onClick={() => handleSearch(search)}
         type="submit"
         size="sm"
         variant="secondary"
         className="rounded-l-none"
       >
-        <SearchIcon size={24} />
+        <SearchIcon className="h-5 w-5 text-muted-foreground" />
       </Button>
-    </div>
-  )
-}
+    </form>
+  );
+};
