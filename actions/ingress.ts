@@ -38,7 +38,7 @@ export const resetIngress = async (hostIdentity: string) => {
 
 export const createIngress = async (ingressType: IngressInput) => {
   const user = await getUser();
-  console.log('-----Creating ingress for user-------', user)
+
   await resetIngress(user.id).then(()=>console.log('reseted')).catch((e)=>console.log('error', e.message))
 
   const options: CreateIngressOptions = {
@@ -47,8 +47,6 @@ export const createIngress = async (ingressType: IngressInput) => {
     participantName: user.username,
     participantIdentity: user.id,
   }
-
-  console.log("---------options--------", options)
 
   if (ingressType === IngressInput.WHIP_INPUT) {
     options.bypassTranscoding = true
@@ -73,9 +71,7 @@ export const createIngress = async (ingressType: IngressInput) => {
     }
   }
 
-  console.log('-----Creatingg ingress-------')
   const ingress = await ingressClient.createIngress(ingressType, options).then((ingress)=>ingress).catch((e)=>console.log('error', e.message))
-  console.log('-----Created ingress-------', ingress)
 
   if (!ingress || !ingress.url || !ingress.streamKey) {
     throw new Error('Failed to create ingress')
