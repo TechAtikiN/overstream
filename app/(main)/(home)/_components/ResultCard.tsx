@@ -24,11 +24,6 @@ export default function ResultCard({ data }: ResultCardProps) {
           isLive={data.isLive}
           username={data.user.username}
         />
-        {data.isLive && (
-          <div className="absolute top-2 left-2 group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform">
-            <LiveBadge />
-          </div>
-        )}
         <div className="flex gap-3">
           <UserAvatar
             username={data.user.username}
