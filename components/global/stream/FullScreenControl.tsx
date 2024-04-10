@@ -1,7 +1,7 @@
 "use client"
 
 import { Maximize, Minimize } from "lucide-react"
-import Hint from "../Hint"
+import { Hint } from "../Hint"
 
 interface FullScreenControlProps {
   isFullScreen: boolean

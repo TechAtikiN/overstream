@@ -8,13 +8,13 @@ interface HintProps {
   align?: "start" | "center" | "end"
 }
 
-export default function Hint({
+export const Hint = ({
   label,
   children,
   asChild,
   side,
   align
-}: HintProps) {
+}: HintProps) => {
   return (
     <TooltipProvider>
       <Tooltip delayDuration={0}>

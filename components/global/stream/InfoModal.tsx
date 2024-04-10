@@ -7,7 +7,7 @@ import { UploadDropzone } from "@/lib/uploadthing"
 import { useRouter } from "next/navigation"
 import { ChangeEvent, ElementRef, FormEvent, useRef, useState, useTransition } from "react"
 import { toast } from "sonner"
-import Hint from "../Hint"
+import { Hint } from "../Hint"
 import { Trash } from "lucide-react"
 import Image from "next/image"
 

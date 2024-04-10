@@ -1,6 +1,6 @@
 "use client"
 
-import Hint from "@/components/global/Hint"
+import { Hint } from "@/components/global/Hint"
 import { Button } from "@/components/ui/button"
 import { useCreatorSidebar } from "@/store/use-creator-sidebar"
 import { ArrowLeft, ArrowLeftFromLine, ArrowRightFromLine } from "lucide-react"

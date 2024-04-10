@@ -1,7 +1,7 @@
 "use client"
 
 import { cn, stringToColor } from "@/lib/utils"
-import Hint from "../Hint"
+import { Hint } from "../Hint"
 import { Button } from "@/components/ui/button"
 import { MinusCircle } from "lucide-react"
 import { useTransition } from "react"

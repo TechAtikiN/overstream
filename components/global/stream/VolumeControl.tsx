@@ -2,7 +2,7 @@
 
 import { Volume1, Volume2, VolumeX } from "lucide-react"
 import { Slider } from "@/components/ui/slider"
-import Hint from "../Hint"
+import { Hint } from "../Hint"
 
 interface VolumeControlProps {
   onToggle: () => void

@@ -1,6 +1,6 @@
 "use client"
 
-import Hint from "@/components/global/Hint"
+import { Hint } from "@/components/global/Hint"
 import { Button } from "@/components/ui/button"
 import { Skeleton } from "@/components/ui/skeleton"
 import { useSidebar } from "@/store/use-sidebar"
