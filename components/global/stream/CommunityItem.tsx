@@ -1,12 +1,12 @@
 "use client"
 
 import { cn, stringToColor } from "@/lib/utils"
-import { Hint } from "../Hint"
 import { Button } from "@/components/ui/button"
 import { MinusCircle } from "lucide-react"
 import { useTransition } from "react"
 import { onBlock } from "@/actions/block"
 import { toast } from "sonner"
+import HintLabel from "../HintLabel"
 
 interface CommunityItemProps {
   hostName: string
@@ -48,7 +48,7 @@ export default function CommunityItem({
         {participantName}
       </p>
       {isHost && !isSelf && (
-        <Hint label="Block">
+        <HintLabel label="Block">
           <Button
             variant={"ghost"}
             disabled={isPending}
@@ -57,7 +57,7 @@ export default function CommunityItem({
           >
             <MinusCircle className="h-4 w-4 text-muted-foreground" />
           </Button>
-        </Hint>
+        </HintLabel>
       )}
     </div>
   )

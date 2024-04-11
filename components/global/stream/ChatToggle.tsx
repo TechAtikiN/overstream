@@ -3,7 +3,7 @@
 import { useChatSidebar } from "@/store/use-chat-sidebar"
 import { ArrowLeftFromLine, ArrowRightFromLine } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Hint } from "../Hint"
+import HintLabel from "../HintLabel"
 
 export default function ChatToggle() {
   const { collapsed, onExpand, onCollapse } = useChatSidebar((state) => state)
@@ -21,7 +21,7 @@ export default function ChatToggle() {
   const label = collapsed ? "Expand" : "Collapse"
 
   return (
-    <Hint label={label} side="left" asChild>
+    <HintLabel label={label} side="left" asChild>
       <Button
         onClick={onToggle}
         variant={"ghost"}
@@ -29,6 +29,6 @@ export default function ChatToggle() {
       >
         <Icon className="h-4 w-4" />
       </Button>
-    </Hint>
+    </HintLabel>
   )
 }

@@ -7,9 +7,9 @@ import { UploadDropzone } from "@/lib/uploadthing"
 import { useRouter } from "next/navigation"
 import { ChangeEvent, ElementRef, FormEvent, useRef, useState, useTransition } from "react"
 import { toast } from "sonner"
-import { Hint } from "../Hint"
 import { Trash } from "lucide-react"
 import Image from "next/image"
+import HintLabel from "../HintLabel"
 
 interface InfoModalProps {
   initialName: string
@@ -87,7 +87,7 @@ export default function InfoModal({ initialName, initialThumbnailUrl }: InfoModa
             {thumbnailUrl ? (
               <div className="relative aspect-video rounded-xloverflow-hidden border border-white/10">
                 <div className="absolute top-2 right-2 z-[10]">
-                  <Hint label="Remove Thumbnail" asChild side="left">
+                  <HintLabel label="Remove Thumbnail" asChild side="left">
                     <Button
                       type="button"
                       disabled={isPending}
@@ -96,7 +96,7 @@ export default function InfoModal({ initialName, initialThumbnailUrl }: InfoModa
                     >
                       <Trash className="h-4 w-4" />
                     </Button>
-                  </Hint>
+                  </HintLabel>
                 </div>
                 <Image
                   src={thumbnailUrl}

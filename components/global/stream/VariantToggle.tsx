@@ -3,7 +3,7 @@
 import { ChatVariant, useChatSidebar } from "@/store/use-chat-sidebar"
 import { MessageSquare, Users } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Hint } from "../Hint"
+import HintLabel from "../HintLabel"
 
 export default function VariantToggle() {
   const { variant, onChangeVariant } = useChatSidebar((state) => state)
@@ -20,7 +20,7 @@ export default function VariantToggle() {
   const label = isChat ? "Community" : "Go back to Chat"
 
   return (
-    <Hint label={label} side="left" asChild>
+    <HintLabel label={label} side="left" asChild>
       <Button
         onClick={onToggle}
         variant={"ghost"}
@@ -28,6 +28,6 @@ export default function VariantToggle() {
       >
         <Icon className="h-4 w-4" />
       </Button>
-    </Hint>
+    </HintLabel>
   )
 }

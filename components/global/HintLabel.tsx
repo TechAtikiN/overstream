@@ -1,6 +1,6 @@
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../ui/tooltip"
 
-interface HintProps {
+interface HintLabelProps {
   label: string
   children: React.ReactNode
   asChild?: boolean
@@ -8,13 +8,13 @@ interface HintProps {
   align?: "start" | "center" | "end"
 }
 
-export const Hint = ({
+export default function HintLabel({
   label,
   children,
   asChild,
   side,
   align
-}: HintProps) => {
+}: HintLabelProps) {
   return (
     <TooltipProvider>
       <Tooltip delayDuration={0}>

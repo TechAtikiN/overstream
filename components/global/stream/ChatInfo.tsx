@@ -1,6 +1,6 @@
 import { useMemo } from "react"
 import { Info } from "lucide-react"
-import { Hint } from "../Hint"
+import HintLabel from "../HintLabel"
 
 interface ChatInfoProps {
   isDelayed: boolean
@@ -49,9 +49,9 @@ export default function ChatInfo({ isDelayed, isFollowersOnly }: ChatInfoProps) 
       className="p-2 text-muted-foreground bg-white/5 border border-white/10 w-full rounded-t-md
       flex items-center gap-x-2"
     >
-      <Hint label={hint}>
+      <HintLabel label={hint}>
         <Info className="h-4 w-4" />
-      </Hint>
+      </HintLabel>
       <p className="text-xs font-semibold">
         {label}
       </p>

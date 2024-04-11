@@ -1,9 +1,9 @@
 "use client"
 
-import { Hint } from "@/components/global/Hint"
 import { Button } from "@/components/ui/button"
 import { useCreatorSidebar } from "@/store/use-creator-sidebar"
-import { ArrowLeft, ArrowLeftFromLine, ArrowRightFromLine } from "lucide-react"
+import { ArrowLeftFromLine, ArrowRightFromLine } from "lucide-react"
+import HintLabel from "@/components/global/HintLabel"
 
 export default function Toggle() {
   const { collapsed, onExpand, onCollapse } = useCreatorSidebar((state) => state)
@@ -13,7 +13,7 @@ export default function Toggle() {
     <>
       {collapsed && (
         <div className="p-3 w-full hidden lg:flex items-center justify-centerpt-4 mb-4">
-          <Hint
+          <HintLabel
             label={label}
             side="right"
             asChild
@@ -26,7 +26,7 @@ export default function Toggle() {
               <ArrowRightFromLine className="h-4 w-4" />
             </Button>
 
-          </Hint>
+          </HintLabel>
         </div>
       )}
 
@@ -35,7 +35,7 @@ export default function Toggle() {
           <p className="font-semibold text-primary">
             Dashboard
           </p>
-          <Hint label={label} side="right" asChild>
+          <HintLabel label={label} side="right" asChild>
             <Button
               onClick={onCollapse}
               variant={"ghost"}
@@ -43,7 +43,7 @@ export default function Toggle() {
             >
               <ArrowLeftFromLine className="h-4 w-4" />
             </Button>
-          </Hint>
+          </HintLabel>
         </div>
       )}
     </>
