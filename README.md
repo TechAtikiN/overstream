@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h1 align="center">
+  overstream 🎮
+</h1>
 
-## Getting Started
+> Overstream offers a platform for gamers and other creators to stream and interact with their audience in real-time.
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+<img 
+src="./docs/assets/auth-1.png" 
+alt="overstream"
+ />
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Key Features 📋
+- [x] **Stream**
+  - [x] **RTMP/WHIP** streaming support
+  - [x] **Streamer/creator** dashboard
+  - [x] **Real-time chat** with followers/viewers
+  - [x] Blocking/removing users from stream
+  - [x] **Slow/follower-only** chat modes
+  - [x] Collapsible/theatre **layout options**
+  - [x] Update stream title/description/thumbnail
+ 
+- [x] **Community**
+  - [x] **Follow/Unfollow** users
+  - [x] **Search** for users in the community
+  - [x] View user streams
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Important Links 🔗
 
-## Learn More
+- [Frontend](./docs/FRONTEND.md)
+- [Database Schema](./docs/SCHEMA.md)
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Tools and Technologies 🛠️
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+**Frontend**
+- **Framework**: Next.js 14 (React.js)
+- **Language**: Typescript
+- **Real-time Chat**: Sockets
+- **Authentication**: Clerk 
+- **Styling**: Tailwind CSS + Shadcn UI
 
-## Deploy on Vercel
+**Backend**
+- **Framework**:  Next.js Route Handlers (Node.js)
+- **Language**: Typescript
+- **Database**: PostgreSQL
+- **ORM**: Prisma
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Infrastructure**
+- **Deployment**: Vercel
+- **Stream Service**: Livekit 
+- **Streaming Protocols**: RTMP / WHIP 
+- **Storage** + **File Upload**: UploadThing
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+---
+
+## Best Practices Followed 📝
+
+- [x] Database indexing for faster queries
+- [x] Typescript for type safety
+- [x] Conventional & descriptive commit messages
+- [x] Linting & Formatting
